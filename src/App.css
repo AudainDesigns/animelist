@@ -28,8 +28,9 @@ a,
 .nav-link:focus,
 a:hover,
 a:active,
-a:focus {
-  /*color: #7fecff;*/
+a:focus,
+.navbar-nav .nav-link.active {
+  color: #7fecff !important;
 }
 
 .nav-link {
@@ -56,19 +57,47 @@ a:focus {
 }
 
 /*Hero Anime*/
-.anime-image--featured-body {
+.anime-list--featured .card {
+  height: 560px;
+}
+.anime-list--featured .anime-image--search::before {
+  opacity: 0 !important;
+}
+
+.anime-list--featured .anime-image--search-body {
+  opacity: 1 !important;
+}
+
+.anime-list--featured .card-body {
   display: flex;
   align-items: flex-end;
   padding: 0;
 }
 
-.anime-image--featured-body-meta {
+.anime-list--featured ul {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 0 !important;
   padding: 1rem;
   background: #2b3140;
+}
+
+.anime-list--featured ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.anime-list--featured ul li {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.anime-list--featured ul li:first-child {
+  width: 100%;
+  display: inline-block;
 }
 
 .anime-image--featured-body-meta ul {}
@@ -148,13 +177,13 @@ input.anime-list--search {}
 }
 
 /*Anime meta*/
-.anime-image-wrapper--featured .anime-meta {
+.anime-list--featured .anime-meta {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
 
-.anime-image-wrapper--featured .meta-item {
+.anime-list--featured .meta-item {
   display: inline-flex;
   flex-wrap: wrap;
   padding: 0rem 0.5rem;
@@ -164,6 +193,64 @@ input.anime-list--search {}
   align-items: center;
 }
 
-.meta-item.anime-genre {
+.anime-list--featured .meta-item.anime-genre {
   background: #27418f;
+}
+
+/*Anime Listing*/
+
+.anime-search-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.anime-image-wrapper--search {
+  flex: 0 0 25%;
+  margin-bottom: 1.3rem;
+}
+
+.anime-image--search {
+  background-size: cover;
+  background-position: center;
+  border: none;
+  height: 476px;
+  transition: unset !important;
+}
+
+@media screen and (max-width: 1400px) {
+  .anime-image--search {
+    height: 406px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .anime-image--search {
+    height: 336px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .anime-image--search {
+    height: 474px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .anime-image-wrapper--search {
+    margin-bottom: 1.3rem;
+  }
+
+  .anime-image--search {
+    height: 381px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .anime-image-wrapper--search {
+    margin-bottom: 2rem;
+  }
+
+  .anime-image--search {
+    height: 382px;
+  }
 }

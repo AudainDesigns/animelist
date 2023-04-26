@@ -4,11 +4,11 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Row } from 'react-bootstrap';
 
-export const AnimeSearchTest = ({data}) => {
+export const AnimeSearch = ({animeData}) => {
 
-    console.log('data:', data);
+    console.log('data:', animeData);
 
-    if (!Array.isArray(data)) {
+    if (!Array.isArray(animeData)) {
         return null; // or some other placeholder component
       }
     
@@ -17,7 +17,7 @@ export const AnimeSearchTest = ({data}) => {
         <div className='anime-list-seasonal'>
             <Row>
             <h5 className='pb-2'>Top Anime</h5>
-            {data.map(anime => (
+            {animeData.map(anime => (
                 <Col sm={12} md={6} lg={3} className="pb-4">
 
                 <div className='anime-image-wrapper--search anime-top'>

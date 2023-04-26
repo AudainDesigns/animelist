@@ -19,7 +19,7 @@ export const HeroAnime = ({ animefeaturedlist }) => {
                     animefeaturedlist.map((anime, index) => {
                         return (
                             <Col sm={12} className="pb-4">
-                                <div className='anime-image-wrapper--featured'>
+                                <div className='anime-image-wrapper--featured anime-featured'>
                                     <Row>
                                         <Col sm={12}>
                                             <Card
@@ -66,10 +66,6 @@ export const HeroAnime = ({ animefeaturedlist }) => {
                     })
                 ) : "Not Found"
             }
-
-
-
-
         </>
     )
 }

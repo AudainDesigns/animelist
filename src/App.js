@@ -5,12 +5,15 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import './App.css';
+
+import './style.scss';
 
 import AnimeToast from './components/AnimeToast';
 
@@ -29,7 +32,6 @@ function App() {
 
   //Search Anime
   const [search, setSearch] = useState('');
-  const [animeSearch, setAnimeSearch] = useState([]);
   const [searched, setSearched] = useState(false);
 
   const [showSearchAnime, setShowSearchAnime] = useState(false);
@@ -44,13 +46,36 @@ function App() {
   const API_URLS = [
     'https://api.jikan.moe/v4/anime?&status=airing&min_score=8&type=tv&limit=4',
     'https://api.jikan.moe/v4/top/anime?limit=4',
-    'https://api.jikan.moe/v4/seasons/now?limit=4'
+    'https://api.jikan.moe/v4/seasons/now?limit=4',
+    'https://api.jikan.moe/v4/genres/anime?limit=4',
   ];
 
   //Random number selection OLD NOT IN USE
   //const [randomIndex, setRandomIndex] = useState(0);
 
   useEffect(() => {
+    const fetchFeaturedAnime = async () => {
+      try {
+        /*let cacheKey = 'featured_anime';
+        let cachedData = localStorage.getItem(cacheKey);
+        if (cachedData) {
+          setFeaturedData([JSON.parse(cachedData)]);
+          setToastMessage('Using cached data');
+        } else {*/
+        let response = await fetch('https://api.jikan.moe/v4/anime?&status=airing&min_score=8&type=tv&limit=20');
+        let responseData = await response.json();
+        let randomIndex = Math.floor(Math.random() * responseData.data.length);
+        let featuredAnime = responseData.data[randomIndex];
+        //localStorage.setItem(cacheKey, JSON.stringify(featuredAnime));
+        localStorage.setItem('featured_anime', JSON.stringify(featuredAnime));
+        setFeaturedData([featuredAnime]);
+        /*}*/
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchFeaturedAnime();
+
     const fetchData = async () => {
       try {
         const data = [];
@@ -73,28 +98,8 @@ function App() {
       }
     };
     fetchData();
-    
-    const fetchFeaturedAnime = async () => {
-      try {
-        /*let cacheKey = 'featured_anime';
-        let cachedData = localStorage.getItem(cacheKey);
-        if (cachedData) {
-          setFeaturedData([JSON.parse(cachedData)]);
-          setToastMessage('Using cached data');
-        } else {*/
-          let response = await fetch('https://api.jikan.moe/v4/anime?&status=airing&min_score=8&type=tv&limit=20');
-          let responseData = await response.json();
-          let randomIndex = Math.floor(Math.random() * responseData.data.length);
-          let featuredAnime = responseData.data[randomIndex];
-          //localStorage.setItem(cacheKey, JSON.stringify(featuredAnime));
-          localStorage.setItem('featured_anime', JSON.stringify(featuredAnime));
-          setFeaturedData([featuredAnime]);
-      /*}*/
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchFeaturedAnime();
+
+
   }, []);
 
   //Search
@@ -126,7 +131,7 @@ function App() {
     setShowSearchAnime(true);
   };
 
-  
+
 
   return (
     <div className="App">
@@ -141,17 +146,23 @@ function App() {
                 <Nav.Link href="#action2">Browse</Nav.Link>
                 <Nav.Link href="#action2">Top 100</Nav.Link>
                 <Nav.Link href="#action2">Trending</Nav.Link>
+                <Form className="d-flex" onSubmit={handleSearch}>
+                  <Form.Control
+                    type="search"
+                    placeholder="Search for an anime"
+                    className="anime-list--form"
+                    aria-label="Search"
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                  {/*<Button variant="outline-success" type="submit" >Search</Button>*/}
+                </Form>
+                <NavDropdown align={{ lg: 'end' }} title="Profile" id="navbarScrollingDropdown">
+                  <NavDropdown.Item href="#action3">
+                    <img src=''/>
+                  </NavDropdown.Item>
+                </NavDropdown>
               </Nav>
-              <Form className="d-flex" onSubmit={handleSearch}>
-                <Form.Control
-                  type="search"
-                  placeholder="Search for an anime"
-                  className="anime-list--form"
-                  aria-label="Search"
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-                {/*<Button variant="outline-success" type="submit" >Search</Button>*/}
-              </Form>
+
             </Navbar.Collapse>
           </Container>
         </Navbar>
@@ -164,18 +175,18 @@ function App() {
 
             {showSearchAnime ?
               <>
-              <SearchAnime searchQuery={search} animelist={animeData} />
-              <Button variant="" className="btn anime-list--load-more" onClick={handleLoadMore}>Load More</Button>
+                <SearchAnime fetchtype="user-search" searchQuery={search} animelist={animeData} />
+                <Button variant="" className="btn anime-list--load-more" onClick={handleLoadMore}>Load More</Button>
               </>
               :
               <>
                 <div className="anime-list--featured">
-                  <AnimeFetch title="" sm="12" md="12" lg="12" data={featuredData} />
+                  <AnimeFetch title="" sm="12" md="12" lg="12" fetchtype="featured" data={featuredData} />
                 </div>
                 <div className="anime-list--search">
-                  <AnimeFetch title="Airing Anime" sm="12" md="6" lg="3" data={animeData[0]?.data || []} />
-                  <AnimeFetch title="Top Anime" sm="12" md="6" lg="3" data={animeData[1]?.data || []} />
-                  <AnimeFetch title="Seasonal Anime" sm="12" md="6" lg="3" data={animeData[2]?.data || []} />
+                  <AnimeFetch title="Airing Anime" sm="12" md="6" lg="3" fetchtype="airing-anime" data={animeData[0]?.data || []} />
+                  <AnimeFetch title="Top Anime" sm="12" md="6" lg="3" fetchtype="top-anime" data={animeData[1]?.data || []} />
+                  <AnimeFetch title="Seasonal Anime" sm="12" md="6" lg="3" fetchtype="seasonal-anime" data={animeData[2]?.data || []} />
                 </div>
               </>
             }

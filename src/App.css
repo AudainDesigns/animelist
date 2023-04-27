@@ -103,11 +103,6 @@ a:focus,
 
 .anime-image--featured-body-meta ul {}
 
-/*Search*/
-input.anime-list--search {}
-
-.anime-image--search {}
-
 /*Toast*/
 .toast-container {
   position: fixed;
@@ -152,6 +147,7 @@ input.anime-list--search {}
   width: 100%;
   height: 100%;
   opacity: 0;
+  z-index: 1;
 }
 
 .anime-image-wrapper--featured {
@@ -269,21 +265,81 @@ li .anime-trailer.meta-item svg {
   border-radius: 1rem;
 }
 
+/*React Playerr*/
+.react-player iframe {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.has-trailer .anime-image--search.card.card {
+  height: 100%;
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.lazy-load-img {
+  border-radius: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media screen and (min-width: 1401px) {
+  .lazy-load-img {
+    height: 476px;
+  }
+  .anime-list--description p {
+    height: 430px;
+  }
+}
+
 @media screen and (max-width: 1400px) {
-  .anime-image--search {
+
+  .anime-image--search,
+  .lazy-load-img {
     height: 406px;
   }
+  .anime-list--description p {
+    height: 410px;
+  }
+
 }
 
 @media screen and (max-width: 1200px) {
-  .anime-image--search {
+
+  .anime-image--search,
+  .lazy-load-img {
     height: 336px;
   }
+  .anime-list--description p {
+    height: 410px;
+  }
+
 }
 
 @media screen and (max-width: 992px) {
-  .anime-image--search {
+
+  .anime-image--search,
+  .lazy-load-img {
     height: 474px;
+  }
+  .featured-container {
+    flex-direction: column!important;
+  }
+  .anime-list--description p {
+    height: 320px;
   }
 }
 
@@ -291,10 +347,14 @@ li .anime-trailer.meta-item svg {
   .anime-image-wrapper--search {
     margin-bottom: 1.3rem;
   }
-
-  .anime-image--search {
+  .anime-image--search,
+  .lazy-load-img {
     height: 381px;
   }
+  .anime-list--description p {
+    height: 320px;
+  }
+
 }
 
 @media screen and (max-width: 576px) {
@@ -302,7 +362,8 @@ li .anime-trailer.meta-item svg {
     margin-bottom: 2rem;
   }
 
-  .anime-image--search {
+  .anime-image--search,
+  .lazy-load-img {
     height: 382px;
   }
 }

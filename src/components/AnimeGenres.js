@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { BadgeHdFill, XCircle } from "react-bootstrap-icons";
 import { Row } from 'react-bootstrap';
 
-export const SearchAnime = ({ animelist, searchQuery, fetchtype }) => {
+export const AnimeGenres = ({ animelist, searchQuery, fetchtype }) => {
   return (
     <>
     <div className={`${fetchtype}`}>

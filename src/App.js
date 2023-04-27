@@ -34,16 +34,21 @@ function App() {
 
   const [showSearchAnime, setShowSearchAnime] = useState(false);
 
+  //Featured Anime
+  const [featuredData, setFeaturedData] = useState([]);
+
   //Load More
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState(8);
 
   //New Dynamic Api Fetch
   const API_URLS = [
-    'https://api.jikan.moe/v4/anime?&status=airing&min_score=8&type=tv&limit=1',
     'https://api.jikan.moe/v4/anime?&status=airing&min_score=8&type=tv&limit=4',
     'https://api.jikan.moe/v4/top/anime?limit=4',
     'https://api.jikan.moe/v4/seasons/now?limit=4'
   ];
+
+  //Random number selection OLD NOT IN USE
+  //const [randomIndex, setRandomIndex] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,12 +73,34 @@ function App() {
       }
     };
     fetchData();
+    
+    const fetchFeaturedAnime = async () => {
+      try {
+        /*let cacheKey = 'featured_anime';
+        let cachedData = localStorage.getItem(cacheKey);
+        if (cachedData) {
+          setFeaturedData([JSON.parse(cachedData)]);
+          setToastMessage('Using cached data');
+        } else {*/
+          let response = await fetch('https://api.jikan.moe/v4/anime?&status=airing&min_score=8&type=tv&limit=20');
+          let responseData = await response.json();
+          let randomIndex = Math.floor(Math.random() * responseData.data.length);
+          let featuredAnime = responseData.data[randomIndex];
+          //localStorage.setItem(cacheKey, JSON.stringify(featuredAnime));
+          localStorage.setItem('featured_anime', JSON.stringify(featuredAnime));
+          setFeaturedData([featuredAnime]);
+      /*}*/
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchFeaturedAnime();
   }, []);
 
   //Search
   const getSearch = async (limit) => {
 
-    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${search}&limit=${limit}`)
+    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${search}&limit=${limit}&sfw`)
     if (!res.ok) {
       //Limit reached
       throw new Error('Too many requests!');
@@ -140,16 +167,15 @@ function App() {
               <SearchAnime searchQuery={search} animelist={animeData} />
               <Button variant="" className="btn anime-list--load-more" onClick={handleLoadMore}>Load More</Button>
               </>
-
               :
               <>
-                <div class="anime-list--featured">
-                  <AnimeFetch title="" sm="12" md="12" lg="12" data={animeData[0]?.data || []} />
+                <div className="anime-list--featured">
+                  <AnimeFetch title="" sm="12" md="12" lg="12" data={featuredData} />
                 </div>
-                <div class="anime-list--search">
-                  <AnimeFetch title="Airing Anime" sm="12" md="6" lg="3" data={animeData[1]?.data || []} />
-                  <AnimeFetch title="Top Anime" sm="12" md="6" lg="3" data={animeData[2]?.data || []} />
-                  <AnimeFetch title="Seasonal Anime" sm="12" md="6" lg="3" data={animeData[3]?.data || []} />
+                <div className="anime-list--search">
+                  <AnimeFetch title="Airing Anime" sm="12" md="6" lg="3" data={animeData[0]?.data || []} />
+                  <AnimeFetch title="Top Anime" sm="12" md="6" lg="3" data={animeData[1]?.data || []} />
+                  <AnimeFetch title="Seasonal Anime" sm="12" md="6" lg="3" data={animeData[2]?.data || []} />
                 </div>
               </>
             }

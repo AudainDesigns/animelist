@@ -17,7 +17,7 @@ function AnimeToast({ message }) {
     return (
         <>
             <ToastContainer className="p-3 top-0 start-0">
-                <Toast show={showA} onClose={toggleShowA}>
+                <Toast show={showA} onClose={toggleShowA} delay={3000}>
                     <Toast.Header>
                         <img src="holder.js/20..." className="rounded me-2" alt="" />
                         <strong className="me-auto">Notice</strong>

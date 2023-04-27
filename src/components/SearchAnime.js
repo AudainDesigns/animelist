@@ -1,12 +1,12 @@
 import React from 'react'
-
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import { BadgeHdFill, XCircle } from "react-bootstrap-icons";
 
 export const SearchAnime = ({ animelist, searchQuery }) => {
   return (
     <>
-        <h5 className='pb-2'>Searching for anime: {searchQuery}</h5>
+      <h5 className='pb-2'>Searching for anime: {searchQuery}</h5>
 
       {animelist && animelist.map((anime) => (
         <Col sm={12} md={6} lg={3} className="pb-4" key={anime.mal_id}>
@@ -32,6 +32,15 @@ export const SearchAnime = ({ animelist, searchQuery }) => {
                   </li>
                   <li>
                     <span className='meta-item anime-episodes'>{anime.episodes} Episodes</span>
+                  </li>
+                  <li>
+                    <span className='meta-item anime-trailer'>
+                    {anime?.trailer?.url ? 
+                    <a href={anime?.trailer?.url} target='_blank' rel='nofollow' className=''><BadgeHdFill color="white" size={15} /> Watch Trailer</a>
+                    : 
+                    <a href={anime?.trailer?.url} target='_blank' rel='nofollow' className=''><XCircle color="white" size={15} /> No Trailer Available</a>
+                    }
+                    </span>
                   </li>
                   <li>
                     <span className='meta-item anime-genre'></span>

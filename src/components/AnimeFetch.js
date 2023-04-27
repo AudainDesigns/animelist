@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import { BadgeHdFill } from "react-bootstrap-icons";
 
 export const AnimeFetch = ({ title, data, sm, md, lg }) => {
 
@@ -25,20 +25,26 @@ export const AnimeFetch = ({ title, data, sm, md, lg }) => {
                                     <Card.Body className='anime-image--search-body'>
                                         <ul className='anime-meta list-unstyled'>
                                             <li>
-                                                <h4 className='meta-item '>{anime.title}</h4>
+                                                <h4 className='meta-item meta--item-title'>{anime.title_english}</h4>
+                                                <h4 className='meta-item meta-item--jp-title'>{anime.title}</h4>
                                             </li>
                                             <li>
-                                                <span className='meta-item anime-year'>{anime.year}</span>
+                                                <span className='meta-item anime-year'>Year: {anime.year}</span>
                                             </li>
                                             <li>
-                                                <span className='meta-item anime-status'>{anime.status}</span>
+                                                <span className='meta-item anime-status'>Status: {anime.status}</span>
                                             </li>
                                             <li>
                                                 <span className='meta-item anime-episodes'>{anime.episodes} Episodes</span>
                                             </li>
+                                            <li>
+                                                <span className='meta-item anime-trailer'>
+                                                    <a href={anime?.trailer?.url} target='_blank' rel='nofollow' className=''><BadgeHdFill color="white" size={15} /> Watch Trailer</a>
+                                                </span>
+                                            </li>
                                             {/*<li>
                                                 <span className='meta-item anime-genre'></span>
-                                </li>*/}
+                                            </li>*/}
                                         </ul>
                                     </Card.Body>
                                 </Card>

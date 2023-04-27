@@ -118,7 +118,7 @@ export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
                                                     anime?.trailer?.url ? (
                                                         <li>
                                                             <span className="meta-item anime-trailer">
-                                                                <a href={anime.trailer.url} target='_blank' rel='nofollow' className=''>
+                                                                <a href={anime.trailer.url} target='_blank' rel='noreferrer nofollow' className=''>
                                                                     <BadgeHdFill color="white" size={15} /> Watch Trailer
                                                                 </a>
                                                             </span>
@@ -126,7 +126,7 @@ export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
                                                     ) : (
                                                         <li>
                                                             <span className="meta-item anime-trailer">
-                                                                <a href={anime.trailer.url} target='_blank' rel='nofollow' className=''>
+                                                                <a href={anime.trailer.url} target='_blank' rel='noreferrer nofollow' className=''>
                                                                     <XCircle color="white" size={15} /> No Trailer Available
                                                                 </a>
                                                             </span>

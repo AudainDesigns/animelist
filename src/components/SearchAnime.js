@@ -40,9 +40,9 @@ export const SearchAnime = ({ animelist, searchQuery, fetchtype }) => {
                   <li>
                     <span className='meta-item anime-trailer'>
                       {anime?.trailer?.url ?
-                        <a href={anime?.trailer?.url} target='_blank' rel='nofollow' className=''><BadgeHdFill color="white" size={15} /> Watch Trailer</a>
+                        <a href={anime?.trailer?.url} target='_blank' rel='noreferrer nofollow' className=''><BadgeHdFill color="white" size={15} /> Watch Trailer</a>
                         :
-                        <a href={anime?.trailer?.url} target='_blank' rel='nofollow' className=''><XCircle color="white" size={15} /> No Trailer Available</a>
+                        <a href={anime?.trailer?.url} target='_blank' rel='noreferrer nofollow' className=''><XCircle color="white" size={15} /> No Trailer Available</a>
                       }
                     </span>
                   </li>

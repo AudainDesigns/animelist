@@ -1,9 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Row } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+//import Button from 'react-bootstrap/Button';
 import { BadgeHdFill, XCircle } from "react-bootstrap-icons";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -25,17 +23,7 @@ export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
         </div>
     );
 
-    const [height, setHeight] = useState(0);
-    const sourceRef = useRef(null);
-    const targetRef = useRef(null);
-
-    useEffect(() => {
-        if (sourceRef.current && targetRef.current) {
-            setHeight(sourceRef.current.offsetHeight);
-            targetRef.current.style.height = `${sourceRef.current.offsetHeight}px`;
-            console.log(height);
-        }
-    }, [sourceRef]);
+    
 
 
 
@@ -59,7 +47,6 @@ export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
 
                                     <Card
                                         className='anime-image--search'
-                                        ref={sourceRef}
                                         style={{
                                             //backgroundImage: `url(${anime?.images?.webp?.large_image_url})`
                                         }}
@@ -118,7 +105,7 @@ export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
                                                     anime?.trailer?.url ? (
                                                         <li>
                                                             <span className="meta-item anime-trailer">
-                                                                <a href={anime.trailer.url} target='_blank' rel='nofollow' className=''>
+                                                                <a href={anime.trailer.url} target='_blank' rel='noreferrer nofollow' className=''>
                                                                     <BadgeHdFill color="white" size={15} /> Watch Trailer
                                                                 </a>
                                                             </span>
@@ -126,7 +113,7 @@ export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
                                                     ) : (
                                                         <li>
                                                             <span className="meta-item anime-trailer">
-                                                                <a href={anime.trailer.url} target='_blank' rel='nofollow' className=''>
+                                                                <a href={anime.trailer.url} target='_blank' rel='noreferrer nofollow' className=''>
                                                                     <XCircle color="white" size={15} /> No Trailer Available
                                                                 </a>
                                                             </span>
@@ -167,7 +154,7 @@ export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
                                         Favorites: {anime.favorites}
                                         </li>
                                     </ul>
-                                    <p className='description' ref={targetRef}>{anime.synopsis}</p>
+                                    <p className='description'>{anime.synopsis}</p>
                                 </div>
                             </Col>
                         ) : (

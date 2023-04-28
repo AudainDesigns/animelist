@@ -13,7 +13,7 @@ export const SearchAnime = ({ animelist, searchQuery, fetchtype }) => {
 
       {animelist && animelist.map((anime) => (
         <Col sm={12} md={6} lg={3} className="pb-4" key={anime.mal_id}>
-          <div className='anime-image-wrapper--search anime-search'>
+          <div className='anime-display anime-image-wrapper--search anime-search'>
             <Card
               className='anime-image--search'
               style={{

@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -50,10 +51,14 @@ function App() {
     'https://api.jikan.moe/v4/genres/anime?limit=4',
   ];
 
+
+
   //Random number selection OLD NOT IN USE
   //const [randomIndex, setRandomIndex] = useState(0);
 
   useEffect(() => {
+
+
     const fetchFeaturedAnime = async () => {
       try {
         /*let cacheKey = 'featured_anime';
@@ -135,10 +140,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Navbar bg="" expand="lg" className="pt-5 pb-3">
-          <Container>
-            <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+      <Container>
+        <header className="App-header">
+          <Navbar bg="" expand="lg" className="pt-5 pb-3">
+            <Navbar.Brand href="#">Anime List</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav className="justify-content-end flex-grow-1 pe-3">
@@ -158,44 +163,46 @@ function App() {
                 </Form>
                 <NavDropdown align={{ lg: 'end' }} title="Profile" id="navbarScrollingDropdown">
                   <NavDropdown.Item href="#action3">
-                    <img src=''/>
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
 
             </Navbar.Collapse>
+          </Navbar>
+        </header>
+        <main>
+          <Container>
+            <Row className='py-4'>
+              <>
+              <Col lg={12}>
+                {toastMessage && <AnimeToast message={toastMessage} />}
+
+                {showSearchAnime ?
+                  <>
+                    <SearchAnime fetchtype="user-search" searchQuery={search} animelist={animeData} />
+                    <Button variant="" className="btn anime-list--load-more" onClick={handleLoadMore}>Load More</Button>
+                  </>
+                  :
+                  <>
+                    <div className="anime-display--featured-container">
+                      <AnimeFetch title="" sm="12" md="12" lg="12" fetchtype="featured" data={featuredData} />
+                    </div>
+                    <div className="anime-display--search-container">
+                      <AnimeFetch title="Airing Anime" sm="12" md="6" lg="3" fetchtype="airing-anime" data={animeData[0]?.data || []} />
+                      <AnimeFetch title="Top Anime" sm="12" md="6" lg="3" fetchtype="top-anime" data={animeData[1]?.data || []} />
+                      <AnimeFetch title="Seasonal Anime" sm="12" md="6" lg="3" fetchtype="seasonal-anime" data={animeData[2]?.data || []} />
+                    </div>
+                  </>
+                }
+                
+              </Col>
+              </>
+            </Row>
           </Container>
-        </Navbar>
-      </header>
-      <main>
-        <Container>
-          <Row className='py-4'>
-
-            {toastMessage && <AnimeToast message={toastMessage} />}
-
-            {showSearchAnime ?
-              <>
-                <SearchAnime fetchtype="user-search" searchQuery={search} animelist={animeData} />
-                <Button variant="" className="btn anime-list--load-more" onClick={handleLoadMore}>Load More</Button>
-              </>
-              :
-              <>
-                <div className="anime-list--featured">
-                  <AnimeFetch title="" sm="12" md="12" lg="12" fetchtype="featured" data={featuredData} />
-                </div>
-                <div className="anime-list--search">
-                  <AnimeFetch title="Airing Anime" sm="12" md="6" lg="3" fetchtype="airing-anime" data={animeData[0]?.data || []} />
-                  <AnimeFetch title="Top Anime" sm="12" md="6" lg="3" fetchtype="top-anime" data={animeData[1]?.data || []} />
-                  <AnimeFetch title="Seasonal Anime" sm="12" md="6" lg="3" fetchtype="seasonal-anime" data={animeData[2]?.data || []} />
-                </div>
-              </>
-            }
-
-          </Row>
-        </Container>
-      </main>
-      <footer>
-      </footer>
+        </main>
+        <footer>
+        </footer>
+      </Container>
     </div>
   );
 }

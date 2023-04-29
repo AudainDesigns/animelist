@@ -3,8 +3,6 @@ import { BadgeHdFill, XCircle } from "react-bootstrap-icons";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-
-
 export const SearchAnime = ({ animelist, searchQuery, fetchtype }) => {
   return (
     <div className={`anime-display--anime-container`}>

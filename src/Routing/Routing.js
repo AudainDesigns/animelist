@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 //import { AnimeDisplay } from '../components/Anime/AnimeDisplay';
-import { AiringAnime } from '../components/Anime/AiringAnime';
+
+//Api
+import { AnimeApi } from '../Api/AnimeApi';
+import AiringAnime from '../components/Anime/AiringAnime';
+
 import { TopAnime } from '../components/Anime/TopAnime';
 import { SeasonalAnime } from '../components/Anime/SeasonalAnime';
 import { AnimeProfile } from '../components/User/AnimeProfile'
 
-export const Routing = (API_URLS) => {
+
+export const Routing = () => {
+    const [data, setData] = useState([]);
+
     return (
         <Routes>
             <Route exact path="/" element={
@@ -25,15 +32,9 @@ export const Routing = (API_URLS) => {
                 </>
             } />
             <Route exact path="/AiringAnime" element={
-                //Home
-
-                //'https://api.jikan.moe/v4/anime?&status=airing&min_score=8&type=tv&limit=4'
-                //'https://api.jikan.moe/v4/top/anime?limit=4'
-                //'https://api.jikan.moe/v4/seasons/now?limit=4'
-                //'https://api.jikan.moe/v4/genres/anime?limit=4'
                 <>
                     <div className="anime-display--airing-container">
-                        <AiringAnime title="Airing Anime" fetchtype="airing-anime" apiUrlIndex={0} />
+                        <AiringAnime title="Airing Anime" fetchtype="airing-anime" index={0} />
                     </div>
 
                 </>

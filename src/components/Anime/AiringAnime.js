@@ -6,10 +6,11 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import ReactPlayer from 'react-player/lazy'
 
 //Api Fetcher
-import AnimeApiData from '../../Api/AnimeApiData.js';
+import { getAnimeData } from '../../Api/AnimeApi.js';
 
-function AiringAnime({ title, fetchtype, apiUrlIndex }) {
-  const apiUrl = API_URLS[apiUrlIndex];
+function AiringAnime({ title, fetchtype, data, index }) {
+
+  const [animeData, setAnimeData] = useState(data || []);
 
   //Meta Information
   const metaData = {
@@ -32,6 +33,14 @@ function AiringAnime({ title, fetchtype, apiUrlIndex }) {
       ></iframe>
     </div>
   );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const newData = await getAnimeData(index);
+      setAnimeData(newData?.data || []);
+    };
+    fetchData();
+  }, [index]);
 
   return (
     <>
@@ -58,14 +67,15 @@ function AiringAnime({ title, fetchtype, apiUrlIndex }) {
               {/*Featured Section*/}
               <div className={`${fetchtype === 'featured' ? 'has-trailer' : 'no-trailer'}`}>
 
+                {animeData.map((anime) => (
+                  <li key={anime.mal_id}>
+                    <a href={anime.url} target="_blank" rel="noopener noreferrer">{anime.title}</a>
+                  </li>
+                ))}
+
                 {/*Featured Check*/}
                 <div>
-                  {animeData.map((anime) => (
-                    <div key={anime.mal_id}>
-                      <h3>{anime.title}</h3>
-                      <p>{anime.synopsis}</p>
-                    </div>
-                  ))}
+
                 </div>
 
               </div>
@@ -79,3 +89,5 @@ function AiringAnime({ title, fetchtype, apiUrlIndex }) {
     </>
   );
 }
+export default AiringAnime;
+

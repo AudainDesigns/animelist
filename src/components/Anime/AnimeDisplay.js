@@ -64,8 +64,7 @@ export const AnimeDisplay = ({ title, data, fetchtype }) => {
                     animeData.map(anime => (
 
                         <div className={`anime-${fetchtype}-item`}
-                            key={anime.mal_id}
-                        >
+                            key={anime.mal_id} >
                             <div className={`${fetchtype === 'featured' ? 'anime-trailer' : 'anime-trailer'}`} >
 
                                 {/*Trailer Check*/}
@@ -142,6 +141,20 @@ export const AnimeDisplay = ({ title, data, fetchtype }) => {
 
                                     </ul>
                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
                             </div>
                         </div>
                     ))}

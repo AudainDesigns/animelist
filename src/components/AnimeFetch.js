@@ -3,7 +3,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ReactPlayer from 'react-player/lazy'
 
-export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
+export const AnimeFetch = ({ title, data, fetchtype }) => {
 
 
     const fallbackComponent = (
@@ -28,8 +28,8 @@ export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
                 className={`anime-display anime-${fetchtype} `}>
                 {data &&
                     data.map(anime => (
-                        <div
-                            className={`anime-${fetchtype}-item`}
+
+                        <div className={`anime-${fetchtype}-item`}
                             key={anime.mal_id}
                         >
                             <div className={`${fetchtype === 'featured' ? 'anime-trailer' : 'anime-trailer'}`} >
@@ -49,11 +49,11 @@ export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
                                                 />
                                             </div>
                                             :
-                                            <img
+                                            <LazyLoadImage
                                                 src={anime?.images?.webp?.large_image_url}
                                                 alt={anime.title_english}
                                                 effect="blur"
-                                                className='img-fluid'
+                                                className=''
                                                 threshold='200'
                                             />
                                         }
@@ -61,11 +61,12 @@ export const AnimeFetch = ({ title, data, sm, md, lg, fetchtype }) => {
                                     :
                                     <div className="anime-image">
                                         <LazyLoadImage
-                                            Src={anime?.images?.webp?.large_image_url}
-                                            Alt={anime.title_english}
+                                            src={anime?.images?.webp?.large_image_url}
+                                            alt={anime.title_english}
                                             effect="blur"
                                             className="img-fluid"
                                         />
+
                                     </div>
                                 }
 

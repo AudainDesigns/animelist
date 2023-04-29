@@ -1,3 +1,8 @@
+$primary-col: #7fecff;
+$secondary-col: #14171e;
+$light-col: #7d7f87;
+$dark-col: #2b3140;
+
 //Search
 .user-search {
     .meta--item-title {
@@ -48,11 +53,19 @@ button.navbar-toggler {
 
     margin-bottom:2rem;
 
-    //Meta
-
 }
 
-//Anime Display
+.no-trailer>span {
+    padding: 0!important;
+    margin: 0!important;
+}
+
+//Anime Meta    
+.meta-item:not(:h4, h5) {
+    color: #ffffff;
+    background: $primary-col;
+
+}
 
 //Featured
 .featured-description {
@@ -62,7 +75,7 @@ button.navbar-toggler {
 .anime-display--featured-container {
     .anime-meta-container {
         border-radius: 0 0 1rem 1rem;
-        background: #2b313f;
+        background: $dark-col;
     }
 
     .anime-trailer {
@@ -73,9 +86,9 @@ button.navbar-toggler {
 
     .has-trailer {
         flex-basis: calc(100%);
-        border: 5px solid #2b3140;
+        border: 5px solid $dark-col;
         border-radius: 1rem 1rem 0 0;
-        background: #2b3140;
+        background: $dark-col;
     }
 
     .anime-featured {
@@ -106,7 +119,7 @@ button.navbar-toggler {
         li {
 
             .meta-item--jp-title {
-                color: #7d7f87;
+                color: $light-col;
                 font-size: 16px;
                 font-weight: 600;
                 margin-top: 0;
@@ -124,8 +137,8 @@ button.navbar-toggler {
 .anime-year,
 .anime-status,
 .anime-episodes {
-    background: #7fecff;
-    color: #000618;
+    background: $primary-col;
+    color: $secondary-col;
     font-weight: 500;
     margin: 0.2rem 1rem;
     font-size: 14px;
@@ -139,23 +152,25 @@ button.navbar-toggler {
     position: relative;
     transition: .3s linear;
 
-    >div:first-child {
+    >div:first-child,
+    >div:nth-child(5n) {
         margin-left: 0;
     }
 
-    >div:last-child {
+    >div:nth-child(4n) {
         margin-right: 0;
     }
 
     .anime-airing-anime-item,
     .anime-top-anime-item,
-    .anime-seasonal-anime-item {
+    .anime-seasonal-anime-item,
+    .anime-user-search-item {
         position: relative;
         margin-bottom: 2rem;
         flex-basis: calc(25% - 0.8rem);
         height: 100%;
-        border: 5px solid #2b313f;
-        background: #2b313f;
+        border: 5px solid $dark-col;
+        background: $dark-col;
         border-radius: 1rem;
         margin: 0.5rem;
 
@@ -168,12 +183,11 @@ button.navbar-toggler {
             //height: 100%;
             flex-direction: row;
             border-radius: 0.3rem;
-            display: flex;
+            display: flex!important;
             flex-wrap: wrap;
             justify-content: flex-start;
             margin: 0.5rem;
             padding: 0 0.5rem;
-
         }
 
         img {
@@ -181,7 +195,6 @@ button.navbar-toggler {
             object-position: center;
             border-radius: 1rem;
             width: 100%;
-
         }
 
         .anime-meta-container {
@@ -196,7 +209,7 @@ button.navbar-toggler {
             }
 
             h5 {
-                color: #7d7f87;
+                color: $light-col;
                 font-size: 16px;
                 font-weight: 600;
                 margin-top: 0;
@@ -215,7 +228,7 @@ button.navbar-toggler {
             }
 
             .meta-item:not(h4, h5) {
-                color: #ffffff;
+                //color: #ffffff;
             }
 
             .anime-trailer {
@@ -270,7 +283,7 @@ button.navbar-toggler {
                 position: absolute;
                 top: 0;
                 left: 0;
-                background-color: #000618;
+                background-color: $secondary-col;
                 width: 100%;
                 height: 100%;
                 border-radius: 1rem;
@@ -281,7 +294,7 @@ button.navbar-toggler {
         }
 
         :hover .anime-meta::before {
-            opacity: 0.75;
+            opacity: 0.85;
 
         }
 
@@ -339,8 +352,8 @@ button.navbar-toggler {
         span {
             text-align: center;
             width: unset !important;
-            background: #7fecff;
-            color: #000618;
+            background: $primary-col;
+            color: $secondary-col;
             font-weight: 500;
             font-size: 14px;
             border-radius: 0.3rem;
@@ -356,7 +369,7 @@ button.navbar-toggler {
 
     p::-webkit-scrollbar {
         width: 8px;
-        background-color: #2b3140;
+        background-color: $dark-col;
         border-radius: 5px;
     }
 
@@ -368,7 +381,7 @@ button.navbar-toggler {
     }
 
     p::-webkit-scrollbar-thumb:hover {
-        background-color: #7fecff;
+        background-color: $primary-col;
     }
 }
 
@@ -376,7 +389,8 @@ button.navbar-toggler {
 
     .anime-airing-anime-item,
     .anime-top-anime-item,
-    .anime-seasonal-anime-item {
+    .anime-seasonal-anime-item,
+    .anime-user-search-item {
         img {
             height: 420px;
         }
@@ -387,7 +401,8 @@ button.navbar-toggler {
 
     .anime-airing-anime-item,
     .anime-top-anime-item,
-    .anime-seasonal-anime-item {
+    .anime-seasonal-anime-item,
+    .anime-user-search-item {
         img {
             height: 360px;
         }
@@ -398,9 +413,14 @@ button.navbar-toggler {
 
     .anime-airing-anime-item,
     .anime-top-anime-item,
-    .anime-seasonal-anime-item {
+    .anime-seasonal-anime-item,
+    .anime-user-search-item {
         img {
             height: 290px;
+        }
+
+        .anime-meta li:not(:first-child, :last-child) {
+            display: none;
         }
     }
 }
@@ -411,9 +431,14 @@ button.navbar-toggler {
 
         .anime-airing-anime-item,
         .anime-top-anime-item,
-        .anime-seasonal-anime-item {
+        .anime-seasonal-anime-item,
+        .anime-user-search-item {
             img {
                 height: 450px;
+            }
+
+            .anime-meta li:not(:first-child, :last-child) {
+                display: flex;
             }
 
             flex-basis:calc(50% - 0.8rem);
@@ -448,7 +473,8 @@ button.navbar-toggler {
 
     .anime-airing-anime-item,
     .anime-top-anime-item,
-    .anime-seasonal-anime-item {
+    .anime-seasonal-anime-item,
+    .anime-user-search-item {
         img {
             height: 320px;
         }
@@ -460,7 +486,8 @@ button.navbar-toggler {
 
         .anime-airing-anime-item,
         .anime-top-anime-item,
-        .anime-seasonal-anime-item {
+        .anime-seasonal-anime-item,
+        .anime-user-search-item {
             img {
                 height: 100%;
             }

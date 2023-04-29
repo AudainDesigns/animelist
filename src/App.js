@@ -48,7 +48,7 @@ function App() {
     'https://api.jikan.moe/v4/anime?&status=airing&min_score=8&type=tv&limit=4',
     'https://api.jikan.moe/v4/top/anime?limit=4',
     'https://api.jikan.moe/v4/seasons/now?limit=4',
-    'https://api.jikan.moe/v4/genres/anime?limit=4',
+    'https://api.jikan.moe/v4/genres/anime?limit=4'
   ];
 
 
@@ -136,8 +136,6 @@ function App() {
     setShowSearchAnime(true);
   };
 
-
-
   return (
     <div className="App">
       <Container>
@@ -178,10 +176,10 @@ function App() {
                 {toastMessage && <AnimeToast message={toastMessage} />}
 
                 {showSearchAnime ?
-                  <>
+                  <div className="anime-display--search-container">
                     <SearchAnime fetchtype="user-search" searchQuery={search} animelist={animeData} />
                     <Button variant="" className="btn anime-list--load-more" onClick={handleLoadMore}>Load More</Button>
-                  </>
+                  </div>
                   :
                   <>
                     <div className="anime-display--featured-container">

@@ -30,8 +30,21 @@ button.navbar-toggler {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%237fecff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
+.no-trailer>span {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+//Anime Meta    
+.meta-item:not(:h4, h5) {
+    color: #ffffff;
+    background: $primary-col;
+
+}
+
 //Featured
 .anime-display--featured-container {
+
     .anime-meta-container {
         border-radius: 0 0 1rem 1rem;
     }
@@ -51,23 +64,8 @@ button.navbar-toggler {
         border-radius: 1rem 1rem 0 0
     }
 
-    margin-bottom:2rem;
-
 }
 
-.no-trailer>span {
-    padding: 0!important;
-    margin: 0!important;
-}
-
-//Anime Meta    
-.meta-item:not(:h4, h5) {
-    color: #ffffff;
-    background: $primary-col;
-
-}
-
-//Featured
 .featured-description {
     flex-basis: calc(30% - 10px);
 }
@@ -145,6 +143,12 @@ button.navbar-toggler {
 }
 
 //Regular
+.anime-display--airing-container,
+.anime-display--top-container,
+.anime-display--seasonal-container {
+    margin-top: 2rem;
+}
+
 .anime-display {
     display: flex;
     flex-direction: row;
@@ -183,7 +187,7 @@ button.navbar-toggler {
             //height: 100%;
             flex-direction: row;
             border-radius: 0.3rem;
-            display: flex!important;
+            display: flex !important;
             flex-wrap: wrap;
             justify-content: flex-start;
             margin: 0.5rem;
@@ -470,13 +474,27 @@ button.navbar-toggler {
 }
 
 @media screen and (max-width: 768px) {
+    .anime-display {
 
-    .anime-airing-anime-item,
-    .anime-top-anime-item,
-    .anime-seasonal-anime-item,
-    .anime-user-search-item {
-        img {
-            height: 320px;
+        .anime-airing-anime-item,
+        .anime-top-anime-item,
+        .anime-seasonal-anime-item,
+        .anime-user-search-item {
+            img {
+                height: 320px;
+            }
+
+            .meta-item {
+                margin: 0.2rem 0.5rem;
+            }
+
+            .meta--item-title {
+                font-size: 16px;
+            }
+
+            .meta-item--jp-title {
+                font-size: 12px;
+            }
         }
     }
 }

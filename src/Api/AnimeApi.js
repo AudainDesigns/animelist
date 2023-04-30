@@ -10,7 +10,7 @@ const animeDataPromiseQueue = [];
 
 const throttleGetAnimeData = async (index, searchQuery) => {
   const apiUrls = [
-    'https://api.jikan.moe/v4/anime?&status=airing&min_score=8&type=tv&limit=1',
+    'https://api.jikan.moe/v4/anime?&status=airing&min_score=9&type=film&limit=1',
     'https://api.jikan.moe/v4/anime?&status=airing&min_score=8&type=tv&limit=4',
     'https://api.jikan.moe/v4/top/anime?limit=4',
     'https://api.jikan.moe/v4/seasons/now?limit=4',

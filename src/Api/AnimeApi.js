@@ -1,6 +1,6 @@
 import pLimit from 'p-limit';
 
-let apiCallCount = 0;
+//let apiCallCount = 0;
 
 const limit = pLimit(1); // set the limit to 1 request at a time
 

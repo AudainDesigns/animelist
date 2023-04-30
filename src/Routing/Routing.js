@@ -11,14 +11,14 @@ import { AnimeProfile } from '../components/User/AnimeProfile'
 
 
 export const Routing = () => {
-    const [data, setData] = useState([]);
+    //const [data, setData] = useState([]);
 
     return (
         <Routes>
             <Route exact path="/" element={
                 //Home
                 <>
-                   <div className="anime-display--featured-container">
+                    <div className="anime-display--featured-container">
                         <AnimeDisplay title="Featured Anime" fetchtype="featured" index={0} />
                     </div>
                     <div className="anime-display--airing-container">
@@ -33,6 +33,7 @@ export const Routing = () => {
                 </>
             } />
             <Route exact path="/AiringAnime" element={
+                //Airing
                 <>
                     <div className="anime-display--airing-container">
                         <AnimeDisplay title="Airing Anime" fetchtype="airing-anime" index={1} />
@@ -41,25 +42,25 @@ export const Routing = () => {
                 </>
             } />
             <Route exact path="/TopAnime" element={
-                //Home
+                //Top
                 <>
                     <div className="anime-display--top-container">
-                        <TopAnime />
+                        <AnimeDisplay title="Top Anime" fetchtype="top-anime" index={2} />
                     </div>
 
                 </>
             } />
             <Route exact path="/SeasonalAnime" element={
-                //Home
+                //Seasonal
                 <>
                     <div className="anime-display--seasonal-container">
-                        <SeasonalAnime />
+                        <AnimeDisplay title="Seasonal Anime" fetchtype="seasonal-anime" index={3} />
                     </div>
 
                 </>
             } />
             <Route exact path="/AnimeProfile" element={
-                //Home
+                //Profile
                 <>
                     <div className="anime-display--profile-container">
                         <AnimeProfile />

@@ -3,6 +3,17 @@ $secondary-col: #14171e;
 $light-col: #7d7f87;
 $dark-col: #2b3140;
 
+
+.anime-list-loading-container {
+    display: flex;
+
+    .placeholder {
+        border-radius: 1rem 1rem 0 0;
+        flex: 1 !important;
+        height: 53.4vh;
+    }
+}
+
 //Search
 .user-search {
     .meta--item-title {
@@ -12,22 +23,28 @@ $dark-col: #2b3140;
 }
 
 //Navigation
-.navbar-brand {
-    color: #fff;
-}
+nav {
+    .navbar-brand {
+        color: #fff;
+    }
 
-button.navbar-toggler {
-    box-shadow: none !important;
-}
+    button.navbar-toggler {
+        box-shadow: none !important;
+    }
 
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-}
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
 
-.navbar-toggler-icon:hover,
-.navbar-toggler-icon:active,
-.navbar-toggler-icon:focus {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%237fecff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    .navbar-toggler-icon:hover,
+    .navbar-toggler-icon:active,
+    .navbar-toggler-icon:focus {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%237fecff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+
+    .nav-link {
+        margin: 0rem 0.3rem;
+    }
 }
 
 .no-trailer>span {
@@ -105,6 +122,13 @@ button.navbar-toggler {
         display: flex;
         flex-direction: column;
 
+        >div:not(:first-child) {
+            display: inline-flex;
+            flex-direction: row;
+            align-items: flex-start;
+
+        }
+
         h4,
         h5 {
             margin-left: 0;
@@ -114,7 +138,7 @@ button.navbar-toggler {
             font-weight: 500;
         }
 
-        li {
+        >div {
 
             .meta-item--jp-title {
                 color: $light-col;
@@ -231,10 +255,6 @@ button.navbar-toggler {
                 left: 0;
             }
 
-            .meta-item:not(h4, h5) {
-                //color: #ffffff;
-            }
-
             .anime-trailer {
                 a {
                     display: flex;
@@ -266,11 +286,17 @@ button.navbar-toggler {
             }
 
             .anime-meta {
-                li {
+                >div {
                     position: relative;
                     z-index: 1;
                     opacity: 0;
                     transition: .3s linear;
+                }
+
+                >div>div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
                 }
 
                 h4,
@@ -279,6 +305,9 @@ button.navbar-toggler {
                 }
 
                 position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .anime-meta::before {
@@ -302,7 +331,7 @@ button.navbar-toggler {
 
         }
 
-        :hover .anime-meta li {
+        :hover .anime-meta>div {
             opacity: 1;
         }
     }
@@ -328,6 +357,12 @@ button.navbar-toggler {
         padding: 0 0.5rem;
         font-weight: 500;
     }
+
+    .placeholder {
+        padding: 0 0.5rem;
+        border-radius: 0.3rem;
+        margin: 0;
+    }
 }
 
 //Front Page Anime
@@ -342,14 +377,14 @@ button.navbar-toggler {
 
 //Description
 .featured-description--inner {
-    ul {
+    >div {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         background-color: transparent;
     }
 
-    ul li {
+    >div>div {
         margin-right: .6rem;
         margin-bottom: .2rem;
 

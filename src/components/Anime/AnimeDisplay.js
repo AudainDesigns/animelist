@@ -5,24 +5,23 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ReactPlayer from 'react-player/lazy'
 import Placeholder from 'react-bootstrap/Placeholder';
+import { useLocation } from 'react-router-dom';
 
 
 //Api Fetcher
 import throttleGetAnimeData from '../../Api/AnimeApi.js';
-//import { limitApiRequests } from '../../Api/ApiRateLimit.js';
 
 function AnimeDisplay({ title, fetchtype, data, index }) {
 
-  function generateRandomString(length) {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return result;
-  }
-
   const [animeData, setAnimeData] = useState(data || []);
+
+  //Search
+  const { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
+  const searchQuery = searchParams.get('q');
+
+  //const location = useLocation();
+  //const searchQuery = new URLSearchParams(location.search).get('q');
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -48,18 +47,25 @@ function AnimeDisplay({ title, fetchtype, data, index }) {
     </div>
   );
 
+  //Run on search
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const newData = await throttleGetAnimeData(index);
+      let newData = [];
+      if (searchQuery) {
+        newData = await throttleGetAnimeData(index, searchQuery);
+      } else {
+        newData = await throttleGetAnimeData(index);
+      }
       setAnimeData(newData?.data || []);
       setIsLoading(false);
     };
 
     fetchData();
-  }, [index]);
+  }, [index, searchQuery]);
 
-  const randomAnime = animeData[Math.floor(Math.random() * animeData.length)];
+  //const randomAnime = animeData[Math.floor(Math.random() * animeData.length)];
 
   return (
     <>

@@ -169,8 +169,14 @@ nav {
 //Regular
 .anime-display--airing-container,
 .anime-display--top-container,
-.anime-display--seasonal-container {
+.anime-display--seasonal-container,
+.anime-display--search-container {
     margin-top: 2rem;
+
+    .anime-image>span {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
 }
 
 .anime-display {
@@ -445,6 +451,7 @@ nav {
         img {
             height: 360px;
         }
+
     }
 }
 
@@ -458,7 +465,13 @@ nav {
             height: 290px;
         }
 
-        .anime-meta li:not(:first-child, :last-child) {
+        .anime-meta {
+            span {
+                margin: 0.2rem 0.5rem;
+            }
+        }
+
+        .anime-meta h5.meta-item--jp-title {
             display: none;
         }
     }
@@ -476,9 +489,11 @@ nav {
                 height: 450px;
             }
 
-            .anime-meta li:not(:first-child, :last-child) {
-                display: flex;
+            
+            .anime-meta h5.meta-item--jp-title {
+                display: unset;
             }
+
 
             flex-basis:calc(50% - 0.8rem);
         }

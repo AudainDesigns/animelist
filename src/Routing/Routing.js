@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 //import { AnimeDisplay } from '../components/Anime/AnimeDisplay';
 
@@ -68,8 +68,15 @@ export const Routing = () => {
 
                 </>
             } />
+            <Route exact path="/Search" element={
+                //Search
+                <>
+                    <div className="anime-display--search-container">
+                        <AnimeDisplay title="Search Anime" fetchtype="user-search" index={5} />
+                    </div>
 
-
+                </>
+            } />
         </Routes>
     )
 }

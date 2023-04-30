@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 //import { AnimeDisplay } from '../components/Anime/AnimeDisplay';
 
 //Api
-import { AnimeApi } from '../Api/AnimeApi';
 import AiringAnime from '../components/Anime/AiringAnime';
 
 import { TopAnime } from '../components/Anime/TopAnime';
@@ -19,22 +18,20 @@ export const Routing = () => {
             <Route exact path="/" element={
                 //Home
                 <>
-                    {/*
-                    <div className="anime-display--featured-container">
-                        <AnimeDisplay title="" sm="12" md="12" lg="12" fetchtype="featured" />
+                   <div className="anime-display--featured-container">
+                        <AiringAnime title="Featured Anime" fetchtype="featured" index={0} />
                     </div>
-                    <div className="anime-display--search-container">
-                        <AnimeDisplay title="Airing Anime" fetchtype="airing-anime" data={animeData[0]?.data || []} />
-                        <AnimeDisplay title="Top Anime" sm="12" md="6" lg="3" fetchtype="top-anime" data={animeData[1]?.data || []} />
-                        <AnimeDisplay title="Seasonal Anime" sm="12" md="6" lg="3" fetchtype="seasonal-anime" data={animeData[3]?.data || []} />
+                    <div className="anime-display--airing-container">
+                        <AiringAnime title="Airing Anime" fetchtype="airing-anime" index={1} />
+                        <AiringAnime title="Top Anime" fetchtype="top-anime" index={2} />
+                        <AiringAnime title="Seasonal Anime" fetchtype="seasonal-anime" index={3} />
                     </div>
-                    */}
                 </>
             } />
             <Route exact path="/AiringAnime" element={
                 <>
                     <div className="anime-display--airing-container">
-                        <AiringAnime title="Airing Anime" fetchtype="airing-anime" index={0} />
+                        <AiringAnime title="Airing Anime" fetchtype="airing-anime" index={1} />
                     </div>
 
                 </>

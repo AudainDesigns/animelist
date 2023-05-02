@@ -4,10 +4,10 @@ import { Routes, Route } from 'react-router-dom';
 
 //Api
 import AnimeDisplay from '../components/Anime/AnimeDisplay';
-
-import { TopAnime } from '../components/Anime/TopAnime';
-import { SeasonalAnime } from '../components/Anime/SeasonalAnime';
-import { AnimeProfile } from '../components/User/AnimeProfile'
+//import TopAnime from '../components/Anime/TopAnime';
+//import SeasonalAnime from '../components/Anime/SeasonalAnime';
+import AnimeProfile from '../components/User/AnimeProfile'
+import WatchList from '../components/User/WatchList';
 
 
 export const Routing = () => {
@@ -22,13 +22,13 @@ export const Routing = () => {
                         <AnimeDisplay title="Featured Anime" fetchtype="featured" index={0} />
                     </div>
                     <div className="anime-display--airing-container">
-                        <AnimeDisplay title="Airing Anime" fetchtype="airing-anime" index={1} />
+                        <AnimeDisplay title="Airing Anime" desc="Currently popular anime" fetchtype="airing-anime" index={1} />
                     </div>
                     <div className="anime-display--top-container">
-                        <AnimeDisplay title="Top Anime" fetchtype="top-anime" index={2} />
+                    <AnimeDisplay title="Top Anime" desc="Currently popular anime" fetchtype="top-anime" index={2} />
                     </div>
                     <div className="anime-display--seasonal-container">
-                        <AnimeDisplay title="Seasonal Anime" fetchtype="seasonal-anime" index={3} />
+                        <AnimeDisplay title="Seasonal Anime" desc="Anime in season" fetchtype="seasonal-anime" index={3} />
                     </div>
                 </>
             } />
@@ -36,7 +36,7 @@ export const Routing = () => {
                 //Airing
                 <>
                     <div className="anime-display--airing-container">
-                        <AnimeDisplay title="Airing Anime" fetchtype="airing-anime" index={1} />
+                        <AnimeDisplay title="Airing Anime" desc="Anime currently airing" fetchtype="airing-anime" index={1} />
                     </div>
 
                 </>
@@ -45,7 +45,7 @@ export const Routing = () => {
                 //Top
                 <>
                     <div className="anime-display--top-container">
-                        <AnimeDisplay title="Top Anime" fetchtype="top-anime" index={2} />
+                    <AnimeDisplay title="Top Anime" desc="Currently popular anime" fetchtype="top-anime" index={2} />
                     </div>
 
                 </>
@@ -54,7 +54,7 @@ export const Routing = () => {
                 //Seasonal
                 <>
                     <div className="anime-display--seasonal-container">
-                        <AnimeDisplay title="Seasonal Anime" fetchtype="seasonal-anime" index={3} />
+                    <AnimeDisplay title="Seasonal Anime" desc="Anime in season" fetchtype="seasonal-anime" index={3} />
                     </div>
 
                 </>
@@ -63,7 +63,7 @@ export const Routing = () => {
                 //Profile
                 <>
                     <div className="anime-display--profile-container">
-                        <AnimeProfile />
+                        <AnimeProfile title="User Profile" desc="Your Anime List Profile"/>
                     </div>
 
                 </>
@@ -72,7 +72,7 @@ export const Routing = () => {
                 //Search
                 <>
                     <div className="anime-display--search-container">
-                        <AnimeDisplay title="Search Anime" fetchtype="user-search" index={5} />
+                        <AnimeDisplay title="Search Anime" desc="Search for an anime" fetchtype="user-search" index={5} />
                     </div>
 
                 </>

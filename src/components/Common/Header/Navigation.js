@@ -51,10 +51,7 @@ export const Navigation = () => {
               />
               {/*<Button variant="outline-success" type="submit" >Search</Button>*/}
             </Form>
-            <NavDropdown align={{ lg: 'end' }} title="Profile" id="navbarScrollingDropdown">
-              <NavDropdown.Item as={Link} to="/AnimeProfile">
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link as={Link} to="/AnimeProfile">Profile</Nav.Link>
           </Nav>
 
         </Navbar.Collapse>

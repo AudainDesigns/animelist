@@ -7,11 +7,15 @@ import ReactPlayer from 'react-player/lazy'
 import Placeholder from 'react-bootstrap/Placeholder';
 import { useLocation } from 'react-router-dom';
 
+import WatchAnime from './WatchAnime'
+//import { FeaturedAnime } from './Parts/FeaturedAnime.js';
+
+
 
 //Api Fetcher
 import throttleGetAnimeData from '../../Api/AnimeApi.js';
 
-function AnimeDisplay({ title, fetchtype, data, index }) {
+function AnimeDisplay({ title, desc, fetchtype, data, index }) {
 
   const [animeData, setAnimeData] = useState(data || []);
 
@@ -27,25 +31,11 @@ function AnimeDisplay({ title, fetchtype, data, index }) {
 
   //Meta Information
   const metaData = {
-    title: 'Airing Anime',
-    description: 'Currently Airing Anime',
+    title: `${title}`,
+    description: { desc },
     keywords: 'anime, airing',
     // cardImage: image.default
   }
-
-  const fallbackComponent = (
-    <div className="player-wrapper">
-      <iframe
-        width='100%'
-        height='100%'
-        src=""
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        frameBorder="0"
-        allowFullScreen
-      ></iframe>
-    </div>
-  );
 
   //Run on search
 
@@ -197,11 +187,12 @@ function AnimeDisplay({ title, fetchtype, data, index }) {
             {animeData &&
               animeData.map((anime) => (
                 <>
-                  <div className={`anime-${fetchtype}-item`}>
+
+                  <div className={`anime-${fetchtype}-item anime-${anime.mal_id}`}>
 
                     {/*Trailer Check*/}
                     {anime?.trailer?.url ?
-                      <div className={`${fetchtype === 'featured' ? 'has-trailer' : 'no-trailer'}`}>
+                      <div className={`${fetchtype === 'featured' ? 'has-trailer' : 'no-trailer'}`} key={anime.mal_id}>
 
                         {/*Featured Check*/}
                         {fetchtype === "featured" ?
@@ -211,21 +202,24 @@ function AnimeDisplay({ title, fetchtype, data, index }) {
                               className='react-player'
                               width='100%'
                               height='100%'
-                              fallback={fallbackComponent}
                             />
                           </div>
                           :
-                          <LazyLoadImage
-                            src={anime?.images?.webp?.large_image_url}
-                            alt={anime.title_english}
-                            effect="blur"
-                            className=''
-                            threshold='200'
-                          />
+                          <>
+                            <WatchAnime animeClassName={`${anime.mal_id}`} />
+                            <LazyLoadImage
+                              src={anime?.images?.webp?.large_image_url}
+                              alt={anime.title_english}
+                              effect="blur"
+                              className=''
+                              threshold='200'
+                            />
+                          </>
                         }
                       </div>
                       :
-                      <div className="anime-image">
+                      <div className="no-trailer">
+                        <WatchAnime animeClassName={`${anime.mal_id}`} />
                         <LazyLoadImage
                           src={anime?.images?.webp?.large_image_url}
                           alt={anime.title_english}

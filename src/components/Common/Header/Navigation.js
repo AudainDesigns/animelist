@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import throttleGetAnimeData from '../../../Api/AnimeApi';
+//import throttleGetAnimeData from '../../../Api/AnimeApi';
 
 export const Navigation = () => {
 

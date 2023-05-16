@@ -18,13 +18,6 @@ export const Navigation = () => {
   const handleSearch = async (event) => {
     event.preventDefault();
     navigate(`/Search?q=${searchQuery}`);
-    //const searchData = await throttleGetAnimeData(5, searchQuery);
-    //console.log(searchQuery);
-
-    //event.preventDefault();
-    //const searchData = await throttleGetAnimeData(1, searchQuery);
-    //history.push(`/search?q=${searchQuery}`);
-    
   };
 
   return (

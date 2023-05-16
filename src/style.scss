@@ -61,6 +61,7 @@ nav {
 
 //Featured
 .anime-display--featured-container {
+    margin-top: 2rem;
 
     .anime-meta-container {
         border-radius: 0 0 1rem 1rem;
@@ -179,6 +180,9 @@ nav {
         margin: 0 !important;
     }
 }
+.anime-display--profile-container {
+    margin-top: 0rem;   
+}
 
 .anime-display {
     display: flex;
@@ -204,7 +208,8 @@ nav {
         position: relative;
         margin-bottom: 2rem;
         flex-basis: calc(25% - 0.8rem);
-        height: 100%;
+        //height: 100%;
+        height:auto;
         border: 5px solid $dark-col;
         background: $dark-col;
         border-radius: 1rem;

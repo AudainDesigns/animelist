@@ -22,11 +22,9 @@ function App() {
         <main>
         <Router>
           <Navigation />
-          <Container>
             <Row>
               <Routing />
             </Row>
-          </Container>
         </Router>
         </main>
         <footer>

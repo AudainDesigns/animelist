@@ -7,7 +7,6 @@ import WatchAnime from '../Anime/WatchAnime.js';
 
 function AnimeProfile({ metaTitle, desc }) {
   
-
   const [animeList, setAnimeList] = useState([]);
 
   //Meta Information

@@ -22,6 +22,34 @@ $dark-col: #2b3140;
     }
 }
 
+.anime-display > div:nth-child(4n) {
+    margin-right: 0;
+}
+.anime-display > div:nth-child(4n + 1) {
+    margin-left: 0;
+}
+
+.loadmore-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+
+    button {
+        border: 5px solid #2b3140;
+        background: #2b3140;
+        border-radius: 1rem;
+        padding: 0.5rem 3rem;
+        color: #eff3ff;
+        font-weight: 600;
+        
+    }
+    :hover {
+            color:#7fecff;
+        }
+}
+
 //Navigation
 nav {
     .navbar-brand {
@@ -180,8 +208,9 @@ nav {
         margin: 0 !important;
     }
 }
+
 .anime-display--profile-container {
-    margin-top: 0rem;   
+    margin-top: 0rem;
 }
 
 .anime-display {
@@ -191,14 +220,14 @@ nav {
     position: relative;
     transition: .3s linear;
 
-    >div:first-child,
+    /*>div:first-child,
     >div:nth-child(5n) {
         margin-left: 0;
     }
 
     >div:nth-child(4n) {
         margin-right: 0;
-    }
+    }*/
 
     .anime-airing-anime-item,
     .anime-top-anime-item,
@@ -209,7 +238,7 @@ nav {
         margin-bottom: 2rem;
         flex-basis: calc(25% - 0.8rem);
         //height: 100%;
-        height:auto;
+        height: auto;
         border: 5px solid $dark-col;
         background: $dark-col;
         border-radius: 1rem;
@@ -448,12 +477,14 @@ nav {
     padding-left: 0.3rem;
     padding-bottom: 0.3rem;
     cursor: pointer;
+
     .add-anime-icon {
-            color: #2bb73c;
+        color: #2bb73c;
     }
+
     .remove-anime-icon {
         color: #e13737;
-}
+    }
 }
 
 @media screen and (min-width: 1401px) {
@@ -475,7 +506,7 @@ nav {
     .anime-top-anime-item,
     .anime-seasonal-anime-item,
     .anime-user-search-item,
-    .anime-watchlist-item  {
+    .anime-watchlist-item {
         img {
             height: 360px;
         }
@@ -489,7 +520,7 @@ nav {
     .anime-top-anime-item,
     .anime-seasonal-anime-item,
     .anime-user-search-item,
-    .anime-watchlist-item  {
+    .anime-watchlist-item {
         img {
             height: 290px;
         }
@@ -514,7 +545,7 @@ nav {
         .anime-top-anime-item,
         .anime-seasonal-anime-item,
         .anime-user-search-item,
-        .anime-watchlist-item  {
+        .anime-watchlist-item {
             img {
                 height: 450px;
             }
@@ -560,7 +591,7 @@ nav {
         .anime-top-anime-item,
         .anime-seasonal-anime-item,
         .anime-user-search-item,
-        .anime-watchlist-item  {
+        .anime-watchlist-item {
             img {
                 height: 320px;
             }
@@ -587,7 +618,7 @@ nav {
         .anime-top-anime-item,
         .anime-seasonal-anime-item,
         .anime-user-search-item,
-        .anime-watchlist-item  {
+        .anime-watchlist-item {
             img {
                 height: 100%;
             }

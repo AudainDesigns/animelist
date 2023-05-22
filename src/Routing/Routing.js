@@ -60,15 +60,14 @@ export const Routing = () => {
                 //Search
                 <>
                     <h5>Search Anime</h5>
-                    <div className="anime-display anime-airing-anime-item">
+                    
                         <AnimeSearch
                             baseUrl="https://api.jikan.moe/v4"
                             endpoint="anime"
-                            limit="16"
+                            searchLimit={8}
                             keyProp="search-anime"
                             metaTitle="Anime List - Search Anime"
                         />
-                    </div>
 
                 </>
             } />

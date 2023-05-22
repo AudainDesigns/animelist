@@ -6,7 +6,9 @@ import { Head } from '../../Common/Header/Head';
 
 import WatchAnime from '../WatchAnime';
 
-const AnimeSearch = ({ metaTitle, desc, baseUrl, endpoint, status, filter, min_score, type, limit, sort, keyProp }) => {
+const AnimeSearch = ({ metaTitle, desc, baseUrl, endpoint, searchLimit, status, filter, min_score, type, sort, keyProp }) => {
+
+    const [limit, setLimit] = useState(searchLimit);
 
     //Meta Information
     const metaData = {
@@ -28,7 +30,7 @@ const AnimeSearch = ({ metaTitle, desc, baseUrl, endpoint, status, filter, min_s
         try {
             const encodedSearchQuery = encodeURIComponent(searchQuery);
             //const url = `${baseUrl}/${endpoint}?q=${encodedSearchQuery}&sort=relevant`;
-            const url = `${baseUrl}/${endpoint}?q=${encodedSearchQuery}${status ? `&status=${status}` : ''}${filter ? `&filter=${filter}` : ''}${min_score ? `&min_score=${min_score}` : ''}${type ? `&type=${type}` : ''}${limit ? `&limit=${limit}` : ''}${sort ? `&sort=${sort}` : ''}`;
+            const url = `${baseUrl}/${endpoint}?q=${encodedSearchQuery}${status ? `&status=${status}` : ''}${filter ? `&filter=${filter}` : ''}${min_score ? `&min_score=${min_score}` : ''}${type ? `&type=${type}` : ''}&limit=${limit}${sort ? `&sort=${sort}` : ''}`;
 
 
             const response = await fetch(url);
@@ -53,60 +55,65 @@ const AnimeSearch = ({ metaTitle, desc, baseUrl, endpoint, status, filter, min_s
 
 
     useEffect(() => {
+        //setLimit(searchLimit);
         fetchAnime();
     }, [searchQuery, filter, status, min_score, type, limit, sort, keyProp]);
 
     return (
         <>
             <Head {...metaData} />
+            <div className="anime-display anime-airing-anime-item">
+                {anime.map((anime) => (
+                    <div id={anime.title} className={`anime-airing-anime-item`} key={anime.mal_id}>
 
-            {anime.map((anime) => (
-                <div className={`anime-airing-anime-item`} key={anime.mal_id}>
+                        <div className='no-trailer' >
 
-                    <div className='no-trailer' >
-
-                        <div className="no-trailer">
-                            <WatchAnime
-                                title={anime.title_english ? anime.title_english : anime.title}
-                                jptitle={anime.title}
-                                imageUrl={anime.images.webp.large_image_url}
-                                year={anime.year}
-                                status={anime.status}
-                                episodes={anime.episodes}
-                            />
+                            <div className="no-trailer">
+                                <WatchAnime
+                                    title={anime.title_english ? anime.title_english : anime.title}
+                                    jptitle={anime.title}
+                                    imageUrl={anime.images.webp.large_image_url}
+                                    year={anime.year}
+                                    status={anime.status}
+                                    episodes={anime.episodes}
+                                />
 
 
-                            <LazyLoadImage
-                                src={anime?.images?.webp?.large_image_url}
-                                alt={anime.title_english}
-                                effect="blur"
-                                className="img-fluid"
-                            />
-                        </div>
-                    </div>
-                    <div className='anime-meta-container'>
-                        <div className='anime-meta'>
-                            <div>
-                                <div>
-                                    <h4 className='meta-item meta--item-title'>{anime.title_english ? anime.title_english : anime.title}</h4>
-                                    <h5 className='meta-item meta-item--jp-title'>{anime.title}</h5>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <span className='meta-item anime-year'>Year: {anime.year}</span>
-                                </div>
-                                <div>
-                                    <span className='meta-item anime-status'>Status: {anime.status}</span>
-                                </div>
-                                <div>
-                                    <span className='meta-item anime-episodes'>{anime.episodes} Episodes</span>
-                                </div>
+                                <LazyLoadImage
+                                    src={anime?.images?.webp?.large_image_url}
+                                    alt={anime.title_english}
+                                    effect="blur"
+                                    className="img-fluid"
+                                />
                             </div>
                         </div>
+                        <div className='anime-meta-container'>
+                            <div className='anime-meta'>
+                                <div>
+                                    <div>
+                                        <h4 className='meta-item meta--item-title'>{anime.title_english ? anime.title_english : anime.title}</h4>
+                                        <h5 className='meta-item meta-item--jp-title'>{anime.title}</h5>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <span className='meta-item anime-year'>Year: {anime.year}</span>
+                                    </div>
+                                    <div>
+                                        <span className='meta-item anime-status'>Status: {anime.status}</span>
+                                    </div>
+                                    <div>
+                                        <span className='meta-item anime-episodes'>{anime.episodes} Episodes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
+            <div className='loadmore-container'>
+                <button onClick={() => setLimit(prevLimit => prevLimit + 4)}>Load More</button>
+            </div>
         </>
     );
 };
